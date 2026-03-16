@@ -2,32 +2,33 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC4: Plagiarism Detection System
-    public static void plagiarismDetectionSystem(){
+    // UC5: Real-Time Analytics Dashboard
+    public static void realTimeAnalyticsDashboard(){
 
-        HashMap<String, Set<String>> ngrams = new HashMap<>();
+        HashMap<String,Integer> pageViews = new HashMap<>();
+        HashMap<String,Set<String>> uniqueVisitors = new HashMap<>();
+        HashMap<String,Integer> trafficSources = new HashMap<>();
 
-        String doc1 = "java is a programming language";
-        String doc2 = "java is a powerful programming language";
+        String page = "/article/breaking-news";
+        String user = "user_123";
+        String source = "google";
 
-        String[] words = doc1.split(" ");
+        pageViews.put(page, pageViews.getOrDefault(page,0)+1);
 
-        for(int i = 0; i < words.length - 1; i++){
+        uniqueVisitors.putIfAbsent(page,new HashSet<>());
+        uniqueVisitors.get(page).add(user);
 
-            String gram = words[i] + " " + words[i+1];
+        trafficSources.put(source, trafficSources.getOrDefault(source,0)+1);
 
-            ngrams.putIfAbsent(gram, new HashSet<>());
-            ngrams.get(gram).add("doc1");
-        }
-
-        System.out.println("Stored n-grams:");
-        System.out.println(ngrams);
+        System.out.println("Page Views: " + pageViews);
+        System.out.println("Unique Visitors: " + uniqueVisitors.get(page).size());
+        System.out.println("Traffic Sources: " + trafficSources);
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC4");
-        plagiarismDetectionSystem();
+        System.out.println("UC5");
+        realTimeAnalyticsDashboard();
 
     }
 }
