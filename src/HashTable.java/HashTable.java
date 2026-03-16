@@ -2,32 +2,33 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC8: Parking Lot Management with Open Addressing
-    public static void parkingLotManagement(){
+    // UC9: Two-Sum Transaction Detection
+    public static void twoSumTransactions(){
 
-        String[] parking = new String[10];   // parking lot with 10 spots
+        int[] transactions = {500, 300, 200};
+        int target = 500;
 
-        String vehicle = "ABC-1234";
+        HashMap<Integer,Integer> map = new HashMap<>();
 
-        int hash = Math.abs(vehicle.hashCode() % 10);
+        for(int i = 0; i < transactions.length; i++){
 
-        int probes = 0;
+            int complement = target - transactions[i];
 
-        while(parking[hash] != null){
-            hash = (hash + 1) % 10;   // linear probing
-            probes++;
+            if(map.containsKey(complement)){
+                System.out.println("Pair found: " + transactions[i] + " + " + complement);
+                return;
+            }
+
+            map.put(transactions[i], i);
         }
 
-        parking[hash] = vehicle;
-
-        System.out.println("Vehicle " + vehicle + " parked at spot #" + hash);
-        System.out.println("Probes required: " + probes);
+        System.out.println("No pair found");
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC8");
-        parkingLotManagement();
+        System.out.println("UC9");
+        twoSumTransactions();
 
     }
 }
