@@ -2,37 +2,29 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC2 method
-    public static void flashSaleInventoryManager(){
+    // UC3: DNS Cache System
+    public static void dnsCacheSystem(){
 
-        HashMap<String,Integer> stock = new HashMap<>();
-        Queue<Integer> waitingList = new LinkedList<>();
+        HashMap<String,String> dnsCache = new HashMap<>();
 
-        stock.put("IPHONE15_256GB",100);
+        dnsCache.put("google.com","172.217.14.206");
+        dnsCache.put("facebook.com","157.240.20.35");
+        dnsCache.put("youtube.com","142.250.183.14");
 
-        String product="IPHONE15_256GB";
-        int userId=12345;
+        String domain="google.com";
 
-        if(stock.get(product) > 0){
-
-            stock.put(product, stock.get(product)-1);
-
-            System.out.println("Purchase successful for user "+userId);
-            System.out.println("Remaining stock: "+stock.get(product));
+        if(dnsCache.containsKey(domain)){
+            System.out.println("Cache HIT → IP Address: " + dnsCache.get(domain));
         }
         else{
-
-            waitingList.add(userId);
-
-            System.out.println("Stock finished");
-            System.out.println("User added to waiting list");
+            System.out.println("Cache MISS → Query upstream DNS");
         }
     }
 
-    // MAIN METHOD
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
-        flashSaleInventoryManager();
+        System.out.println("UC3");
+        dnsCacheSystem();
 
     }
 }
