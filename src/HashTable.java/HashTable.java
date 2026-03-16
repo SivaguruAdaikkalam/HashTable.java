@@ -2,31 +2,32 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC7: Autocomplete System
-    public static void autocompleteSystem(){
+    // UC8: Parking Lot Management with Open Addressing
+    public static void parkingLotManagement(){
 
-        HashMap<String,Integer> searchQueries = new HashMap<>();
+        String[] parking = new String[10];   // parking lot with 10 spots
 
-        searchQueries.put("java tutorial",1234567);
-        searchQueries.put("javascript",987654);
-        searchQueries.put("java download",456789);
+        String vehicle = "ABC-1234";
 
-        String prefix = "jav";
+        int hash = Math.abs(vehicle.hashCode() % 10);
 
-        System.out.println("Search suggestions:");
+        int probes = 0;
 
-        for(String query : searchQueries.keySet()){
-
-            if(query.startsWith(prefix)){
-                System.out.println(query + " (" + searchQueries.get(query) + " searches)");
-            }
+        while(parking[hash] != null){
+            hash = (hash + 1) % 10;   // linear probing
+            probes++;
         }
+
+        parking[hash] = vehicle;
+
+        System.out.println("Vehicle " + vehicle + " parked at spot #" + hash);
+        System.out.println("Probes required: " + probes);
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC7");
-        autocompleteSystem();
+        System.out.println("UC8");
+        parkingLotManagement();
 
     }
 }
