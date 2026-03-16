@@ -1,38 +1,38 @@
 import java.util.*;
 
-public class HashTable {
+public class PalindromeCheckerApp {
 
-    // UC1: Username Availability Checker
-    static HashMap<String,Integer> users = new HashMap<>();
-    static HashMap<String,Integer> attempts = new HashMap<>();
+    // UC2 method
+    public static void flashSaleInventoryManager(){
 
-    public static void usernameAvailabilityChecker() {
+        HashMap<String,Integer> stock = new HashMap<>();
+        Queue<Integer> waitingList = new LinkedList<>();
 
-        users.put("john_doe",1);
-        users.put("admin",2);
+        stock.put("IPHONE15_256GB",100);
 
-        String username="john_doe";
+        String product="IPHONE15_256GB";
+        int userId=12345;
 
-        attempts.put(username, attempts.getOrDefault(username,0)+1);
+        if(stock.get(product) > 0){
 
-        if(users.containsKey(username)){
-            System.out.println("Username already taken");
+            stock.put(product, stock.get(product)-1);
 
-            System.out.println("Suggestions:");
-            System.out.println(username+"1");
-            System.out.println(username+"2");
-            System.out.println(username.replace("_","."));
+            System.out.println("Purchase successful for user "+userId);
+            System.out.println("Remaining stock: "+stock.get(product));
         }
         else{
-            System.out.println("Username available");
-        }
 
-        System.out.println("Attempt count: "+attempts.get(username));
+            waitingList.add(userId);
+
+            System.out.println("Stock finished");
+            System.out.println("User added to waiting list");
+        }
     }
 
+    // MAIN METHOD
     public static void main(String[] args) {
 
-        usernameAvailabilityChecker();
+        flashSaleInventoryManager();
 
     }
 }
