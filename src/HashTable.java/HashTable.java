@@ -2,33 +2,38 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC9: Two-Sum Transaction Detection
-    public static void twoSumTransactions(){
+    // UC10: Multi-Level Cache System
+    public static void multiLevelCacheSystem(){
 
-        int[] transactions = {500, 300, 200};
-        int target = 500;
+        LinkedHashMap<String,String> L1Cache = new LinkedHashMap<>();
+        HashMap<String,String> L2Cache = new HashMap<>();
 
-        HashMap<Integer,Integer> map = new HashMap<>();
+        L2Cache.put("video_123","SSD_VIDEO_DATA");
+        L2Cache.put("video_456","SSD_VIDEO_DATA");
 
-        for(int i = 0; i < transactions.length; i++){
+        String videoId = "video_123";
 
-            int complement = target - transactions[i];
-
-            if(map.containsKey(complement)){
-                System.out.println("Pair found: " + transactions[i] + " + " + complement);
-                return;
-            }
-
-            map.put(transactions[i], i);
+        if(L1Cache.containsKey(videoId)){
+            System.out.println("L1 Cache HIT (Memory)");
         }
+        else if(L2Cache.containsKey(videoId)){
 
-        System.out.println("No pair found");
+            System.out.println("L2 Cache HIT (SSD)");
+
+            L1Cache.put(videoId, L2Cache.get(videoId));
+
+            System.out.println("Video promoted to L1 Cache");
+        }
+        else{
+
+            System.out.println("L3 Database HIT");
+        }
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC9");
-        twoSumTransactions();
+        System.out.println("UC10");
+        multiLevelCacheSystem();
 
     }
 }
