@@ -2,27 +2,31 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC6: Distributed Rate Limiter
-    public static void rateLimiter(){
+    // UC7: Autocomplete System
+    public static void autocompleteSystem(){
 
-        HashMap<String,Integer> requestCount = new HashMap<>();
+        HashMap<String,Integer> searchQueries = new HashMap<>();
 
-        String clientId = "abc123";
+        searchQueries.put("java tutorial",1234567);
+        searchQueries.put("javascript",987654);
+        searchQueries.put("java download",456789);
 
-        requestCount.put(clientId, requestCount.getOrDefault(clientId,0)+1);
+        String prefix = "jav";
 
-        if(requestCount.get(clientId) <= 5){
-            System.out.println("Request allowed. Remaining requests: " + (5 - requestCount.get(clientId)));
-        }
-        else{
-            System.out.println("Rate limit exceeded for client: " + clientId);
+        System.out.println("Search suggestions:");
+
+        for(String query : searchQueries.keySet()){
+
+            if(query.startsWith(prefix)){
+                System.out.println(query + " (" + searchQueries.get(query) + " searches)");
+            }
         }
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC6");
-        rateLimiter();
+        System.out.println("UC7");
+        autocompleteSystem();
 
     }
 }
