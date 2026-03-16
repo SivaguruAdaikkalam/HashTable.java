@@ -2,29 +2,32 @@ import java.util.*;
 
 public class PalindromeCheckerApp {
 
-    // UC3: DNS Cache System
-    public static void dnsCacheSystem(){
+    // UC4: Plagiarism Detection System
+    public static void plagiarismDetectionSystem(){
 
-        HashMap<String,String> dnsCache = new HashMap<>();
+        HashMap<String, Set<String>> ngrams = new HashMap<>();
 
-        dnsCache.put("google.com","172.217.14.206");
-        dnsCache.put("facebook.com","157.240.20.35");
-        dnsCache.put("youtube.com","142.250.183.14");
+        String doc1 = "java is a programming language";
+        String doc2 = "java is a powerful programming language";
 
-        String domain="google.com";
+        String[] words = doc1.split(" ");
 
-        if(dnsCache.containsKey(domain)){
-            System.out.println("Cache HIT → IP Address: " + dnsCache.get(domain));
+        for(int i = 0; i < words.length - 1; i++){
+
+            String gram = words[i] + " " + words[i+1];
+
+            ngrams.putIfAbsent(gram, new HashSet<>());
+            ngrams.get(gram).add("doc1");
         }
-        else{
-            System.out.println("Cache MISS → Query upstream DNS");
-        }
+
+        System.out.println("Stored n-grams:");
+        System.out.println(ngrams);
     }
 
     public static void main(String[] args){
 
-        System.out.println("UC3");
-        dnsCacheSystem();
+        System.out.println("UC4");
+        plagiarismDetectionSystem();
 
     }
 }
